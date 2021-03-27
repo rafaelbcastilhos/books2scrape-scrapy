@@ -14,7 +14,6 @@ class BookSpider(scrapy.Spider):
         "Tax": "tax",
         "Availability": "availability",
         "Number of reviews": "number_of_reviews",
-
     }
 
     def start_requests(self):
@@ -25,7 +24,10 @@ class BookSpider(scrapy.Spider):
     def parse(self, response):
         self.logger.info(f"Scrape Page {response.url}")
         book_links = response \
-            .xpath("//article[@class='product_pod']//h3//a/@href").getall()
+            .xpath("//article[@class='product_pod']"
+                   "//h3"
+                   "//a"
+                   "/@href").getall()
         next_page = response.xpath("//li[@class='next']//@href").get()
 
         yield from response.follow_all(book_links, self.parse_book)
