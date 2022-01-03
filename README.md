@@ -1,7 +1,7 @@
-# books2scrape-scrapy
+# webscraping-books2scrape
 
-list:
+list crawlers:
 scrapy list
 
-exec:
+run:
 scrapy crawl book_spider
